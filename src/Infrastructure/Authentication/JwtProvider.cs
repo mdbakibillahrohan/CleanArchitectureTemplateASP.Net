@@ -1,10 +1,10 @@
 using Application.Abstractions.Authentication;
-using Domain.Users;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Domain.Entities;
 
 namespace Infrastructure.Authentication;
 
@@ -21,9 +21,8 @@ public sealed class JwtProvider : IJwtProvider
     {
         var claims = new Claim[]
         {
-            new(JwtRegisteredClaimNames.Sub, user.Id.Value.ToString()),
+            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new(JwtRegisteredClaimNames.Email, user.Email),
-            new(ClaimTypes.Role, user.Role.ToString())
         };
 
         var signingCredentials = new SigningCredentials(
