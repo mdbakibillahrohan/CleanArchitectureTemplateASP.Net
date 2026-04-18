@@ -1,6 +1,4 @@
-using Api.Extensions;
 using Carter;
-using MediatR;
 
 namespace Api.Endpoints;
 
